@@ -41,12 +41,22 @@ class UsersController < ApplicationController
         User.destory(params[:id])
     end
 
+    # =============================== {Login a user} =================================
 
+
+    def login
+        @user = User.find_by(username: params[:username])
+        if @user && @user.authenticate(params[:password])
+           render json: {user: UserSerializer.new(@user)}
+        else
+            render json: {error: "PLEASE TRY AGAIN"}
+        end
+    end
 
     private 
 
     def  user_params
-        params.require(:user).permit(:username, :password)
+        params.require(:user).permit(:username, :password_digest)
     end
 
 
