@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import HeaderAdmin from '../Header/HeaderAdmin';
 import UpdateCardUI from '../Cards/UpdateCardUI';
 import Footer from '../Footer/Footer';
+import ScrollUpButton from "react-scroll-up-button";
+
 import swal from 'sweetalert';
 
 
@@ -30,6 +32,7 @@ class AdminUpdatePro extends Component {
     ))        
         return (
             <div>
+            <ScrollUpButton  style={{backgroundColor: "#6ac304", outline:'0'}}/>
             <HeaderAdmin />
             <div className="container">
             <div className="row">

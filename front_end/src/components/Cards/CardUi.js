@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'; // using withRouter to redirect once the form is submitted 
-import Header from '../Header/Header';
+// import Header from '../Header/Header';
 
 import '../../App.css';
 
 
 class CardUi extends Component {
-  
+    
+    handleClick=() => {
+        console.log(this.props.product)
+        this.props.addToCart(this.props.product)
+    }
 
     render() {
         return (
@@ -16,7 +20,7 @@ class CardUi extends Component {
                         <NavLink to={"/item/" + this.props.id}> 
                         <img src={this.props.image} className="card-img-top" alt="169824162"/>     {/* Image */}
                         </NavLink>
-                        <div className="card-body ">
+                        <div className="card-body">
                         <h5 className="card-title text-dark ">{this.props.name} {}                 {/* Name */}
                         <span className="badge badge-warning">New</span>
                         </h5>
@@ -25,7 +29,7 @@ class CardUi extends Component {
                         </div>
                         <div>
                         <button type="button" className="btn  btn-lg btn-block font-weight-bold buttons-color"
-                        >Add to cart</button>
+                            onClick={this.handleClick}>Add to cart</button>
                         </div>
                         </div>                 
                     </div>

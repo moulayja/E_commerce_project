@@ -18,9 +18,6 @@ export default class SignIn extends Component {
     }
 
     handleSubmit = event =>{
-
-
-
         event.preventDefault();
         console.log(this.state);
         fetch(`http://localhost:3007/users/login`,{
@@ -47,8 +44,8 @@ export default class SignIn extends Component {
 
     render() {
         return (
-            <div>
-            <Header/>
+            <div className="py-2 mb-2">     
+            <Header cart={this.props.cart}/>
             <div className="d-flex justify-content-center align-items-center">
 
             <div className="col-sm-8">
@@ -72,7 +69,7 @@ export default class SignIn extends Component {
                         </label> */}
                     </div>
                     <button className="btn btn-lg btn-block buttons-color" type="submit">Sign in</button>
-                    <p className="mt-5 mb-3 text-muted">© 2019-2020</p>
+                    <p className="mt-5 mb-3" style={{color:"#C8C8C8"}}>© 2019-2020</p>
                     </form>
       
             </div>

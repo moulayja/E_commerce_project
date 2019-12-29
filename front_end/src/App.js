@@ -2,7 +2,7 @@ import React from 'react';
 import MainStyle from './components/Main/MainStyle';
 import AdminPage from './components/Main/AdminPage';
 import CardUi from './components/Cards/CardUi';
-import Header from './components/Header/Header';
+import CardInfo from './components/Cards/CardInfo';
 
 import SignIn from './components/Authentication/SignIn';
 import SignUp from './components/Authentication/SignUp';
@@ -22,7 +22,8 @@ class App extends React.Component {
         state = {
                   products: [],
                   displayProducts: [],
-                  counter:0
+                  cart: [] 
+
         }
 
 
@@ -108,9 +109,14 @@ class App extends React.Component {
 
         }
 
-        addToCart = ()=>{
-                this.setState({ counter: this.state.counter + 1 })
-        }
+        addToCart =(product)=>{
+                if(!this.state.cart.includes(product)){
+                        this.setState({
+                                cart: [...this.state.cart, product]
+                            })
+                }
+                
+            }
 
         render(){
           return (
@@ -118,11 +124,8 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>                      
               <Route exact path={"/home"} activeClassName="active">
-                 <MainStyle handleItem={this.handleItem} products={this.state.displayProducts} counter={this.state.counter}/>
-                 <CardUi addToCart={this.addToCart}/>
-              </Route >  
-              
-
+                 <MainStyle addToCart={this.addToCart} cart={this.state.cart} handleItem={this.handleItem} products={this.state.displayProducts} counter={this.state.counter}/>
+              </Route >   
 
               <Route  path={"/admin"} activeClassName="active">
                  <AdminPage makeNewProduct={this.makeNewProduct} />
@@ -138,38 +141,44 @@ class App extends React.Component {
 
 
               <Route path={"/signin"} activeClassName="active">
-                <SignIn />
+                <SignIn cart={this.state.cart}/>
               </Route>
 
               <Route path={"/item/:id"} activeClassName="active">
                 {this.renderItem}
               </Route>
-              <Route  path={"/cart"} component={CartList} activeClassName="active"/>
-
-
+              <Route  path={"/cart"} activeClassName="active">
+                <CartList cart={this.state.cart}/>
+              </Route>
+              {/* <Route  activeClassName="active">
+                <CardInfo cart={this.state.cart}/>
+              </Route> */}
 
 
               {/* AdminUpdatePro */}
 
               {/* <Route  path={"/item"} component={CardInfo} activeClassName="active"/> */}
-              <Route path={"/register"} component={SignUp} activeClassName="active"/>
+              <Route path={"/register"} activeClassName="active">
+                      <SignUp cart={this.state.cart}/>
+              </Route>
               <Route component={Default} activeClassName="active"/>
         </Switch>
 
-      </BrowserRouter>
 
+      </BrowserRouter>
       )}
+      
       renderItem = (renderParams) => {
         const id = parseInt(renderParams.match.params.id)
         let product = this.state.products.find(product => product.id === id)
-        return <CardUi 
-        id={product.id}
-        // handleItem={this.props.handleItem} 
-        name={product.name}
-        image={product.image}
-        description={product.description}
-        price={product.price}
-        key={product.id} />
+        return <CardInfo
+                id={product.id}
+                // handleItem={this.props.handleItem} 
+                name={product.name}
+                image={product.image}
+                description={product.description}
+                price={product.price}
+                key={product.id} /> 
 }
 }
 

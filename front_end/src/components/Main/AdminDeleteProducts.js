@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import HeaderAdmin from '../Header/HeaderAdmin';
 import Footer from '../Footer/Footer';
 import DeleteCardUI from '../Cards/DeleteCardUI';
+import ScrollUpButton from "react-scroll-up-button";
+
 
 
 
@@ -24,6 +26,7 @@ export default class AdminDeleteProducts extends Component {
     ))        
         return (
             <div>
+            <ScrollUpButton  style={{backgroundColor: "rgb(219, 20, 20)", outline:'0'}}/>
             <HeaderAdmin />
             <div className="container">
             <div className="row">

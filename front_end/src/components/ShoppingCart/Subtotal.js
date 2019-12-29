@@ -5,17 +5,22 @@ import Footer from '../Footer/Footer';
 export default class Subtotal extends Component {
     render() {
         return (
-            <div className="container w-75 p-3">
-            <h3>Subtotal</h3>
+            <div className="container p-3">
+            <h3 style={{color:"#C8C8C8"}}>Subtotal</h3>
 
-            <div className="container border">
+            <div className="container w-75 p-3 cart-subtotal">
             <div className="row my-1 text-capitalize text-center">
-                <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0">
-                    <h2>Total</h2>
-                    <h2 >0</h2>
-                    <h2 >Proceed</h2>
+
+                <table className="table table-borderless">
+                    <thead>
+                        <tr>
+                        <th scope="col" className="borderless text-light"><h4>Total</h4></th>
+                        <th scope="col" className="borderless text-light"><h4>$ 00.00</h4></th>
+                        </tr>
+                    </thead>
+                </table>
                 </div>
-                </div>
+            
 
                 
  

@@ -5,9 +5,7 @@ import swal from 'sweetalert';
 export default class Cart extends Component {
 
     state={
-        counter: 0,
-        price: 150,
-        total: 0
+        counter: 1
     }
     increment =()=>{
         this.setState({counter: this.state.counter + 1 })
@@ -36,19 +34,20 @@ export default class Cart extends Component {
             <div className="row my-1 text-capitalize text-center">
                 <div className="col-10 mx-auto col-lg-2">
                     <img 
-                    src="https://images-na.ssl-images-amazon.com/images/I/71UEGismafL._AC_UY780_.jpg"
-                    style={{width:"5rem", height: "5rem"}}
-                    className="img-fluid"
+                    src={this.props.product.image}
+                    
+                    style={{width:"8rem", height: "7rem", border: "0.1rem dashed black"}}
+                    className="img-fluid rounded-circle"
                     alt="product"
                     />
                 </div>
                 <div className="col-10 mx-auto col-lg-2 my-2">
                     <span className="d-lg-none ">Product :</span>
-                    Shoes for men
+                    {this.props.product.name}
                 </div>
                 <div className="col-10 mx-auto col-lg-2 my-2">
                     <span className="d-lg-none">Price :</span>
-                    $3000
+                    ${this.props.product.price}
                 </div>
                 <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0">
                 <div className="d-flex justify-content-center my-2">
@@ -61,7 +60,6 @@ export default class Cart extends Component {
                 </div>
  
             </div>
-    <h1>Total price:{this.state.total}</h1>
             </div>
     
         )
