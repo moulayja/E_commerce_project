@@ -16,6 +16,7 @@ class AdminUpdatePro extends Component {
         event.preventDefault();
          this.props.updateProduct(this.props.product)
             swal("Ok!", "Your product is removed!", "error");
+            alert('Ok ')
     }
 
     render(){

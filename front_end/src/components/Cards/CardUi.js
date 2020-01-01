@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'; // using withRouter to redirect once the form is submitted 
-// import Header from '../Header/Header';
-
+import { NavLink } from 'react-router-dom';
 import '../../App.css';
 
 
-class CardUi extends Component {
+export default class CardUi extends Component {
+
+    state = {
+        btn: 'Add to cart'
+    }
     
     handleClick=() => {
-        console.log(this.props.product)
         this.props.addToCart(this.props.product)
+        this.setState({btn: "Successfully Added"}) 
     }
 
     render() {
@@ -27,18 +29,26 @@ class CardUi extends Component {
                         <h5 className="card-title text-info">${this.props.price}</h5>              {/* Price */}
                         <p className="card-text">{this.props.description}</p>                      {/* Descr */}
                         </div>
+
                         <div>
-                        <button type="button" className="btn  btn-lg btn-block font-weight-bold buttons-color"
-                            onClick={this.handleClick}>Add to cart</button>
+                        {this.state.btn === "Successfully Added" ? 
+                        <div className="alert alert-info alert-dismissible fade show" role="alert">
+                        <strong> "{this.props.name}" Is Successfully Added To Your Cart!</strong> You can add more of this item once you checkout.
+                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                         </div>
+                        : null}
+                        <button type="button" className="btn  btn-lg btn-block font-weight-bold buttons-color"
+                            onClick={this.handleClick}>{this.state.btn}</button>
+                        </div>
+                        
                         </div>                 
                     </div>
-
                     
         )
     }
 }
 
-export default CardUi;
 
 

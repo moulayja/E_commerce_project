@@ -4,9 +4,6 @@ import HeaderAdmin from '../Header/HeaderAdmin';
 import swal from 'sweetalert';
 
 
-
-
-
 class AdminPage extends Component {
 
     state ={ 

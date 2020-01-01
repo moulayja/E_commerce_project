@@ -1,15 +1,16 @@
 import React from 'react';
-import MainStyle from './components/Main/MainStyle';
 import AdminPage from './components/Main/AdminPage';
-import CardUi from './components/Cards/CardUi';
 import CardInfo from './components/Cards/CardInfo';
-
+import CartList from './components/ShoppingCart/CartList';
+import Default from './components/Main/Default';
+import MainStyle from './components/Main/MainStyle';
 import SignIn from './components/Authentication/SignIn';
 import SignUp from './components/Authentication/SignUp';
-import Default from './components/Main/Default';
-import CartList from './components/ShoppingCart/CartList';
+import Slider from './components/SlideShow/Slider'
+// import CardUi from './components/Cards/CardUi';
 
-import {BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import {BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 
 
@@ -19,16 +20,21 @@ import AdminUpdatePro from './components/Main/AdminUpdatePro';
 
 class App extends React.Component {
 
-        state = {
+        state = { user:{},
                   products: [],
                   displayProducts: [],
-                  cart: [] 
-
+                  cart: [],
+                  token: null
         }
 
 
-        setUser= userInformation =>{
-                this.setState({ user: userInformation})
+        setUser= (user, token) =>{
+                this.setState({ 
+                        user: user,
+                        token: token
+                })
+                localStorage.token = token
+                localStorage.user = user.username
         }
 
         componentDidMount(){
@@ -121,7 +127,11 @@ class App extends React.Component {
         render(){
           return (
 
+
+
       <BrowserRouter>
+        {this.state.token ? <Redirect to="/home" /> : <Redirect to="/signin"/>}
+
         <Switch>                      
               <Route exact path={"/home"} activeClassName="active">
                  <MainStyle addToCart={this.addToCart} cart={this.state.cart} handleItem={this.handleItem} products={this.state.displayProducts} counter={this.state.counter}/>
@@ -139,9 +149,8 @@ class App extends React.Component {
                 <AdminUpdatePro products={this.state.products} updateProduct={this.updateProduct}/>
               </Route >
 
-
               <Route path={"/signin"} activeClassName="active">
-                <SignIn cart={this.state.cart}/>
+                <SignIn cart={this.state.cart} setUser={this.setUser}/>
               </Route>
 
               <Route path={"/item/:id"} activeClassName="active">
@@ -150,22 +159,16 @@ class App extends React.Component {
               <Route  path={"/cart"} activeClassName="active">
                 <CartList cart={this.state.cart}/>
               </Route>
-              {/* <Route  activeClassName="active">
-                <CardInfo cart={this.state.cart}/>
-              </Route> */}
-
-
-              {/* AdminUpdatePro */}
-
-              {/* <Route  path={"/item"} component={CardInfo} activeClassName="active"/> */}
               <Route path={"/register"} activeClassName="active">
                       <SignUp cart={this.state.cart}/>
               </Route>
+              <Route path={"/ti"} component={Slider} activeClassName="active"/>
               <Route component={Default} activeClassName="active"/>
         </Switch>
 
-
       </BrowserRouter>
+      
+
       )}
       
       renderItem = (renderParams) => {

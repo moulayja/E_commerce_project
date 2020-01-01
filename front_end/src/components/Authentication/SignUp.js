@@ -41,13 +41,7 @@ export default class SignUp extends Component {
 
                     <label htmlFor="inputPassword" className="sr-only">ConfirmPassword</label>
                     <input type="password" id="inputPassword" className="form-control" placeholder="Confirm Password" required=""/>
-
-
-
                     <div className="checkbox mb-3">
-                        <label>
-                        {/* <input type="checkbox" value="remember-me"/> Remember me */}
-                        </label>
                     </div>
                     <button className="btn btn-lg btn-block buttons-color" type="submit">Sign up</button>
                     <p className="mt-5 mb-3" style={{color:"#C8C8C8"}}>© 2019-2020</p>

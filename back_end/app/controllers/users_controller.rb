@@ -47,7 +47,8 @@ class UsersController < ApplicationController
     def login
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
-           render json: {user: UserSerializer.new(@user)}
+            token = token(user_id: @user.id)
+           render json: {user: UserSerializer.new(@user), token: token}
         else
             render json: {error: "PLEASE TRY AGAIN"}
         end
@@ -58,6 +59,25 @@ class UsersController < ApplicationController
     def  user_params
         params.require(:user).permit(:username, :password_digest)
     end
+
+
+
+# ==============================
+
+
+
+
+
+
+
+
+
+
+
+# ================================
+
+
+
 
 
 end

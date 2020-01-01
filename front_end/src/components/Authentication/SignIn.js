@@ -4,7 +4,6 @@ import Header from '../Header/Header';
 
 export default class SignIn extends Component {
    
-
     state={
         username: "",
         password: ""
@@ -23,6 +22,7 @@ export default class SignIn extends Component {
         fetch(`http://localhost:3007/users/login`,{
             method: 'POST',
             headers: {
+                "Authorization": "token_go",
                 'content-type': 'application/json',
                 'accept' : 'application/json'
 
@@ -33,13 +33,10 @@ export default class SignIn extends Component {
             })
         })
         .then(res=> res.json())
-        .then(response => console.log(response) || this.props.setUser(response.user))
+        .then(response => console.log(response) || this.props.setUser(response.user, response.token))
 
 
     }
-
-
-
 
 
     render() {
@@ -64,9 +61,6 @@ export default class SignIn extends Component {
                     <label htmlFor="inputPassword" className="sr-only">Password</label>
                     <input type="password"  name= "password" id="inputPassword" className="form-control" placeholder="Password" required="" onChange={this.handleChange}/>
                     <div className="checkbox mb-3">
-                        {/* <label>
-                        <input type="checkbox" value="remember-me"/> Remember me
-                        </label> */}
                     </div>
                     <button className="btn btn-lg btn-block buttons-color" type="submit">Sign in</button>
                     <p className="mt-5 mb-3" style={{color:"#C8C8C8"}}>© 2019-2020</p>

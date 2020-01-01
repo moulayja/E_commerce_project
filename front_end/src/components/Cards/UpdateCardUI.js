@@ -15,7 +15,6 @@ class UpdateCardUI extends Component {
             event.preventDefault();
             this.props.updateProduct()
         })
-        // swal("Ok!", "Your product is removed!", "error");
     }
 
     render() {
@@ -23,8 +22,6 @@ class UpdateCardUI extends Component {
         return (
 
                     <div className="col-sm-4 py-2 px-2" >
-                    
-
                         <div className="card card-body h-100 mt-4">
                         <img src={this.props.image} className="card-img-top" alt="169824162"/>     {/* Image */}
                         <div className="card-body ">
@@ -36,13 +33,10 @@ class UpdateCardUI extends Component {
                         </div>
                         <div>
                         <UpdateModal whatever= {this.props} titleId={modalId}/>
-
                         <button type="button" className="btn  btn-lg btn-block font-weight-bold buttons-color-green"  data-toggle="modal" data-target={`#${modalId}`} >Update</button>
                         </div>
                         </div>
-
-                             
-            </div>
+                    </div>
         )
     }
 }

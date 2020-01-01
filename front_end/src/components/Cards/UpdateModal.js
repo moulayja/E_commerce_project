@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'; // using withRouter to redirect once the form is submitted 
-
 import swal from 'sweetalert';
 
 
@@ -16,7 +15,7 @@ class UpdateModal extends Component {
     }
   }
 
-  handleChange = (event) => this.setState({[event.target.name]: event.target.value}, console.log(this.state))
+  handleChange = (event) => this.setState({[event.target.name]: event.target.value})
 
   handleUpdate = () =>{
     this.props.whatever.updateProduct(this.state);
